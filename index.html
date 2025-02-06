@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>Rock Paper Scissors Game</h1>
+<div id="game">
+    <img onclick="play('rock')"src="17387570871647073202552291240939.jpg" alt=""> 
+    
+    <img  onclick="play('paper')" src="17387571244892017819322856679925.jpg" alt="">
+    <img onclick="play('scissors')" src="17387571363054531413160450570941.jpg" alt="">
+    <!-- <button onclick="play('rock')">Rock</button>
+    <button onclick="play('paper')">Paper</button>100
+    <button onclick="play('scissors')">Scissors</button> -->
+</div>
+<div id="result"></div>
+
+<script>
+    // function play(userChoice) {
+    //     const choices = ['rock', 'paper', 'scissors'];
+    //     const computerChoice = choices[Math.floor(Math.random() * 3)];
+    //     let result = '';
+
+    //     if (userChoice === computerChoice) {
+    //         result = 'It\'s a tie!';
+    //     } else if (
+    //         (userChoice === 'rock' && computerChoice === 'scissors') ||
+    //         (userChoice === 'paper' && computerChoice === 'rock') ||
+    //         (userChoice === 'scissors' && computerChoice === 'paper')
+    //     ) {
+    //         result = 'You win!';
+    //     } else {
+    //         result = 'You lose!';
+    //     }
+
+    //     document.getElementById('result').innerText = `You chose ${userChoice}, computer chose ${computerChoice}. ${result}`;
+    // }
+</script>
+<script>
+    let userScore = 0;
+    let computerScore = 0;
+
+    function play(userChoice) {
+        const choices = ['rock', 'paper', 'scissors'];
+        const computerChoice = choices[Math.floor(Math.random() * 3)];
+        let result = '';
+
+        if (userChoice === computerChoice) {
+            result = 'It\'s a tie!';
+        } else if (
+            (userChoice === 'rock' && computerChoice === 'scissors') ||
+            (userChoice === 'paper' && computerChoice === 'rock') ||
+            (userChoice === 'scissors' && computerChoice === 'paper')
+        ) {
+            result = 'You win!';
+            userScore++;
+            playSound('win');
+        } else {
+            result = 'You lose!';
+            computerScore++;
+            playSound('lose');
+        }
+
+        document.getElementById('result').innerText = `You chose ${userChoice}, computer chose ${computerChoice}. ${result}`;
+        document.getElementById('userScore').innerText = `User Score: ${userScore}`;
+        document.getElementById('computerScore').innerText = `Computer Score: ${computerScore}`;
+    }
+
+    function playSound(result) {
+        const winSound = new Audio('win-sound.mp3');
+        const loseSound = new Audio('lose-sound.mp3');
+        if (result === 'win') {
+            winSound.play();
+        } else {
+            loseSound.play();
+        }
+    }
+</script>
+
+<div id="scores">
+    <p id="userScore">User Score: 0</p>
+    <p id="computerScore">Computer Score: 0</p>
+</div>
+
+<style>
+    #scores {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+</style>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+    }
+    #game button {
+        font-size: 20px;
+        margin: 10px;
+        padding: 10px 20px;
+    }
+    #result {
+        margin-top: 20px;
+        font-size: 24px;
+    }
+    img{
+        background: aqua;
+        border: 2px solid black;
+        gap: 30px;
+        width: 100px;
+        border-radius: 50px;
+    }
+</style>
+</body>
+</html>
